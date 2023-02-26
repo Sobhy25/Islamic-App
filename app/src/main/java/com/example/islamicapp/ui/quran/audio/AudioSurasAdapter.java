@@ -94,9 +94,6 @@ public class AudioSurasAdapter extends RecyclerView.Adapter<AudioSurasAdapter.Su
         ImageView downloadImageView;
         public SurasViewHolder(@NonNull View itemView) {
             super(itemView);
-            //
-            ///
-            //
             suraNum= itemView.findViewById(R.id.item_audio_suras_number);
             suraName= itemView.findViewById(R.id.item_audio_suras_name);
             downloadImageView= itemView.findViewById(R.id.item_audio_suras_download);
