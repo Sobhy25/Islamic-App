@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="islamic">Islamic</string>
+    <string name="search_toolbar_title">بحث عن آية</string>
+    <string name="search_edit_text_hint">اكتب كلمة أو جزء من آية</string>
+    <string name="search_result_text">نتائج البحث</string>
+    <string name="search_result_name_of_sora">سورة البقرة</string>
+    <string name="search_result_indexofayah_page">الآية:1، الصفحة:2</string>
+    <string name="search_result_text_of_ayah">بسم الله الرحمن الرحيم</string>
+    <string name="search_btn_move">انتقال</string>
+    <string name="index">اختر السورة أو الجزء</string>
+    <string name="soras">السور</string>
+    <string name="jozz">الأجزاء</string>
+    <string name="search_for_ayah">بحث عن آية</string>
+    <string name="move_to">انتقل إلى</string>
+    <string name="change_background_color">لون خلفية المصحف</string>
+    <string name="search_type_startwith">اكتب حرف أو كلمة</string>
+    <string name="search_type_endwith">اكتب حرف أو كلمة</string>
+    <string name="reciter">القرّاء</string>
+    <string name="download">التحميلات</string>
+    <string name="broadcast">الإذاعات</string>
+
+    <string-array name="search_type">
+        <item>تحتوي على</item>
+        <item>تبدأ ب</item>
+        <item>تنتهي ب</item>
+    </string-array>
+
+</resources>
