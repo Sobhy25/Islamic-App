@@ -2,9 +2,9 @@ package com.example.islamicapp.Database;
 
 import androidx.room.Dao;
 import androidx.room.Query;
-import com.example.islamicapp.pojo.Ayah;
-import com.example.islamicapp.pojo.Jozz;
-import com.example.islamicapp.pojo.Sora;
+import com.example.islamicapp.pojo.quran.Ayah;
+import com.example.islamicapp.pojo.quran.Jozz;
+import com.example.islamicapp.pojo.quran.Sora;
 
 import java.util.List;
 

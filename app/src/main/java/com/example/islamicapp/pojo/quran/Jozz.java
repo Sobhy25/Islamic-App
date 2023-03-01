@@ -1,4 +1,4 @@
-package com.example.islamicapp.pojo;
+package com.example.islamicapp.pojo.quran;
 
 public class Jozz {
     int jozzNumber, startPage, endPage, ayahId;

@@ -1,4 +1,4 @@
-package com.example.islamicapp.pojo;
+package com.example.islamicapp.pojo.quran;
 
 
 import androidx.room.Entity;
@@ -60,6 +60,6 @@ public class ReciterEntity implements Comparable<ReciterEntity> {
 
     @Override
     public int compareTo(ReciterEntity o) {
-        return this.letter.compareTo(o.getLetter());
+        return this.name.compareTo(o.getName());
     }
 }

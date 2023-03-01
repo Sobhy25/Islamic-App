@@ -1,7 +1,10 @@
 package com.example.islamicapp.ui.quran.audio;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,7 +14,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.islamicapp.R;
-import com.example.islamicapp.pojo.AudioSura;
+import com.example.islamicapp.pojo.quran.AudioSura;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
@@ -34,6 +37,9 @@ public class PlayerActivity extends AppCompatActivity
         setContentView(R.layout.activity_player);
         initView();
         getIntentMethod();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("finish_activity");
+        registerReceiver(finishActivityReceiver, filter);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -83,6 +89,12 @@ public class PlayerActivity extends AppCompatActivity
     protected void onPause() {
         super.onPause();
         unbindService(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(finishActivityReceiver);
     }
 
     private void nextThreadBtn() {
@@ -205,9 +217,16 @@ public class PlayerActivity extends AppCompatActivity
             suraUri= suraList.get(position).getSuraUrl();
         }
 
-        Intent intent= new Intent(this, QuranAudioService.class);
-        intent.putExtra("servicePosition", position);
-        startService(intent);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent= new Intent(getApplicationContext(), QuranAudioService.class);
+                intent.putExtra("servicePosition", position);
+                startService(intent);
+            }
+        }).start();
+
+
     }
     private void initView() {
         reciterNameTV= findViewById(R.id.player_tv_reciter_name);
@@ -252,5 +271,14 @@ public class PlayerActivity extends AppCompatActivity
     public void onServiceDisconnected(ComponentName name) {
         quranAudioService= null;
     }
+
+    private BroadcastReceiver finishActivityReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals("finish_activity")) {
+                finish();
+            }
+        }
+    };
 
 }

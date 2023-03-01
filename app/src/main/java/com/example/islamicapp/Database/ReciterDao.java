@@ -5,8 +5,8 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.islamicapp.pojo.MoshafEntity;
-import com.example.islamicapp.pojo.ReciterEntity;
+import com.example.islamicapp.pojo.quran.MoshafEntity;
+import com.example.islamicapp.pojo.quran.ReciterEntity;
 
 import java.util.List;
 
@@ -21,10 +21,8 @@ public interface ReciterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertReciter(ReciterEntity... reciter);
 
-    @Insert
-    void insertReciters(List<ReciterEntity> reciterEntityList);
 
-//    @Query("select * from moshaf where reciterId= :reciterId")
+//    @Query("select moshaf from reciter where id= :reciterId")
 //    List<MoshafEntity> getAllMoshaf(int reciterId);
 
     @Query("select * from reciter")

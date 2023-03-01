@@ -1,5 +1,7 @@
 package com.example.islamicapp.ui.quran.audio;
 
+import static com.example.islamicapp.ui.quran.audio.RecitersFragment.isNetworkAvailable;
+
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.content.Context;
@@ -15,7 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.islamicapp.R;
-import com.example.islamicapp.pojo.AudioSura;
+import com.example.islamicapp.pojo.quran.AudioSura;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -36,38 +38,44 @@ public class AudioSurasAdapter extends RecyclerView.Adapter<AudioSurasAdapter.Su
         holder.suraNum.setText(String.valueOf(Sora.getSuraNumber()));
         holder.suraName.setText(Sora.getSuraName());
 
-        holder.downloadImageView.setOnClickListener(v -> {
-            folderName= Sora.getReciterName()+"/"+Sora.getMoshafName();
-            File folder= new File(v.getContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), folderName);
+        if(isNetworkAvailable(holder.itemView.getContext())){
+            holder.downloadImageView.setOnClickListener(v -> {
+                folderName= Sora.getReciterName()+"/"+Sora.getMoshafName();
+                File folder= new File(v.getContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), folderName);
 
-            boolean success= true;
-            if (!folder.exists()) {
-                success = folder.mkdirs();
-            }
-            if (success) {
-                // Folder created successfully
-                // Start the download
-                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(Sora.getSuraUrl()));
-                request.setDescription("Downloading");
-                request.setMimeType("audio/MP3");
-                request.setTitle(Sora.getSuraName());
-                request.allowScanningByMediaScanner();
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                request.setDestinationInExternalFilesDir(v.getContext(), Environment.DIRECTORY_DOWNLOADS, folderName+"/"+Sora.getSuraName()+".mp3");
-                DownloadManager manager = (DownloadManager) holder.itemView.getContext().getSystemService(Context.DOWNLOAD_SERVICE);
-                manager.enqueue(request);
+                boolean success= true;
+                if (!folder.exists()) {
+                    success = folder.mkdirs();
+                }
+                if (success) {
+                    // Folder created successfully
+                    // Start the download
+                    DownloadManager.Request request = new DownloadManager.Request(Uri.parse(Sora.getSuraUrl()));
+                    request.setDescription("Downloading");
+                    request.setMimeType("audio/MP3");
+                    request.setTitle(Sora.getSuraName());
+                    request.allowScanningByMediaScanner();
+                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                    request.setDestinationInExternalFilesDir(v.getContext(), Environment.DIRECTORY_DOWNLOADS, folderName+"/"+Sora.getSuraName()+".mp3");
+                    DownloadManager manager = (DownloadManager) holder.itemView.getContext().getSystemService(Context.DOWNLOAD_SERVICE);
+                    manager.enqueue(request);
 
-            } else {
-                // Failed to create folder
-                Toast.makeText(v.getContext(), "Can't download file", Toast.LENGTH_SHORT).show();
-            }
-        });
-
+                } else {
+                    // Failed to create folder
+                    Toast.makeText(v.getContext(), "Can't download file", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         holder.itemView.setOnClickListener(v -> {
-            Intent intent= new Intent(holder.itemView.getContext(), PlayerActivity.class);
-            intent.putExtra("suraList", SoraArrayList);
-            intent.putExtra("position", holder.getAdapterPosition());
-            holder.itemView.getContext().startActivity(intent);
+            if(isNetworkAvailable(v.getContext())){
+                Intent intent= new Intent(holder.itemView.getContext(), PlayerActivity.class);
+                intent.putExtra("suraList", SoraArrayList);
+                intent.putExtra("position", holder.getAdapterPosition());
+                holder.itemView.getContext().startActivity(intent);
+            } else {
+                Toast.makeText(v.getContext(), "لا يوجد اتصال بالانترنت", Toast.LENGTH_SHORT).show();
+            }
+
         });
 
 //        File file= new File(holder.itemView.getContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), folderName+"/"+Sora.getSuraName()+".mp3");

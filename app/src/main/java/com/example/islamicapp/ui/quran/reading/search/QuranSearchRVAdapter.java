@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.islamicapp.ui.quran.reading.OnRecyclerViewItemClickListener;
 import com.example.islamicapp.R;
-import com.example.islamicapp.pojo.Ayah;
+import com.example.islamicapp.pojo.quran.Ayah;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.islamicapp.pojo;
+package com.example.islamicapp.pojo.quran;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;

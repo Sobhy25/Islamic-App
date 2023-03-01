@@ -6,8 +6,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import com.example.islamicapp.pojo.MoshafEntity;
-import com.example.islamicapp.pojo.ReciterEntity;
+import com.example.islamicapp.pojo.quran.MoshafEntity;
+import com.example.islamicapp.pojo.quran.ReciterEntity;
 
 @androidx.room.Database(entities = {MoshafEntity.class, ReciterEntity.class}, version = 1)
 @TypeConverters({Converters.class})

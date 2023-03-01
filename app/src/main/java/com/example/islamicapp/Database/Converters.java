@@ -2,7 +2,7 @@ package com.example.islamicapp.Database;
 
 import androidx.room.TypeConverter;
 
-import com.example.islamicapp.pojo.MoshafEntity;
+import com.example.islamicapp.pojo.quran.MoshafEntity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

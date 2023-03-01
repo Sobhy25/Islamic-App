@@ -1,7 +1,6 @@
 package com.example.islamicapp.ui.quran.audio;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.islamicapp.R;
-import com.example.islamicapp.pojo.AudioSura;
-import com.example.islamicapp.pojo.Sora;
+import com.example.islamicapp.pojo.quran.AudioSura;
 
 import java.util.ArrayList;
 

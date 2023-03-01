@@ -14,7 +14,8 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layoutDirection="rtl" />
+        android:layoutDirection="rtl"
+        android:background="#32FFC107"/>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/material_toolbar"

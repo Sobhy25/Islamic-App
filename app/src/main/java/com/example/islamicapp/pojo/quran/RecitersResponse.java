@@ -1,4 +1,4 @@
-package com.example.islamicapp.pojo;
+package com.example.islamicapp.pojo.quran;
 
 import com.google.gson.annotations.SerializedName;
 

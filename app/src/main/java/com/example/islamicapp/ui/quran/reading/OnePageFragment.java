@@ -2,6 +2,9 @@ package com.example.islamicapp.ui.quran.reading;
 
 import static com.example.islamicapp.ui.quran.reading.QuranContainer.toggleToolbarAndTaskbar;
 
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,13 +17,13 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.islamicapp.Database.QuranDatabase;
 import com.example.islamicapp.R;
-import com.example.islamicapp.pojo.Ayah;
-import com.example.islamicapp.pojo.PagesManager;
+import com.example.islamicapp.pojo.quran.Ayah;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class OnePageFragment extends Fragment {
@@ -51,7 +54,7 @@ public class OnePageFragment extends Fragment {
         juzzNumber= view.findViewById(R.id.fragment_juzz_number);
         pageNumberTv= view.findViewById(R.id.fragment_page_number);
 
-        int page= PagesManager.getImageByPageNumber(view.getContext(), pageNumber);
+        int page= getImageFromDrawableByPageNumber(pageNumber);
         imageView.setImageResource(page);
 
         List<Ayah> ayahs= QuranDatabase.getINSTANCE(view.getContext()).quranDao().getAyatByPage(pageNumber);
@@ -61,10 +64,15 @@ public class OnePageFragment extends Fragment {
             juzzNumber.setText("جزء "+ayahs.get(ayahs.size()-1).getJozz());
             pageNumberTv.setText(""+pageNumber);
         }
-
-
-
         frameLayout.setOnClickListener(v -> toggleToolbarAndTaskbar());
-
     }
+
+    int getImageFromDrawableByPageNumber(int pageNumber){
+        DecimalFormat formatter= new DecimalFormat("000");
+        String pageName= "page"+ formatter.format(pageNumber);
+        int nameOfImageInDrawableFile= getContext().getResources()
+                .getIdentifier(pageName,"drawable", getContext().getPackageName());
+        return nameOfImageInDrawableFile;
+    }
+
 }

@@ -3,7 +3,7 @@ package com.example.islamicapp.ui.quran.reading.indexes.listofsoras;
 import android.content.Context;
 
 import com.example.islamicapp.Database.QuranDatabase;
-import com.example.islamicapp.pojo.Sora;
+import com.example.islamicapp.pojo.quran.Sora;
 
 import java.util.ArrayList;
 

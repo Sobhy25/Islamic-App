@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.islamicapp.ui.quran.reading.OnRecyclerViewItemClickListener;
 import com.example.islamicapp.R;
-import com.example.islamicapp.pojo.Jozz;
+import com.example.islamicapp.pojo.quran.Jozz;
 
 import java.util.ArrayList;
 

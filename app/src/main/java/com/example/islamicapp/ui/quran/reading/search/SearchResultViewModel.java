@@ -4,7 +4,7 @@ import android.content.Context;
 
 
 import com.example.islamicapp.Database.QuranDatabase;
-import com.example.islamicapp.pojo.Ayah;
+import com.example.islamicapp.pojo.quran.Ayah;
 
 import java.util.ArrayList;
 

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.islamicapp.R;
-import com.example.islamicapp.pojo.Ayah;
+import com.example.islamicapp.pojo.quran.Ayah;
 
 import java.util.ArrayList;
 

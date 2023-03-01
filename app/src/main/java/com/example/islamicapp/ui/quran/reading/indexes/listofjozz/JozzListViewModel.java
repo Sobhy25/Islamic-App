@@ -3,7 +3,7 @@ package com.example.islamicapp.ui.quran.reading.indexes.listofjozz;
 import android.content.Context;
 
 import com.example.islamicapp.Database.QuranDatabase;
-import com.example.islamicapp.pojo.Jozz;
+import com.example.islamicapp.pojo.quran.Jozz;
 
 import java.util.ArrayList;
 

@@ -17,11 +17,11 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
-import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import com.example.islamicapp.R;
-import com.example.islamicapp.pojo.AudioSura;
+import com.example.islamicapp.pojo.quran.AudioSura;
 import java.util.ArrayList;
 
 public class QuranAudioService extends Service implements MediaPlayer.OnCompletionListener {
@@ -90,6 +90,9 @@ public class QuranAudioService extends Service implements MediaPlayer.OnCompleti
     @Override
     public void onDestroy() {
         super.onDestroy();
+        stop();
+        Intent intent = new Intent("finish_activity");
+        sendBroadcast(intent);
         stopSelf();
     }
 

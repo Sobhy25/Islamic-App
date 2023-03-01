@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+
 import com.example.islamicapp.R;
 import com.example.islamicapp.ui.quran.reading.indexes.IndexesOfQuran;
 import com.example.islamicapp.ui.quran.reading.search.QuranSearch;
@@ -38,6 +40,7 @@ public class QuranContainer extends AppCompatActivity implements ColorPickerDial
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quran_container);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         toolbar= findViewById(R.id.material_toolbar);
         viewPager = findViewById(R.id.view_pager);
         setSupportActionBar(toolbar);

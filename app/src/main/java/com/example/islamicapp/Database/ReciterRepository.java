@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.islamicapp.pojo.MoshafEntity;
-import com.example.islamicapp.pojo.ReciterEntity;
-import com.example.islamicapp.pojo.RecitersResponse;
+import com.example.islamicapp.pojo.quran.MoshafEntity;
+import com.example.islamicapp.pojo.quran.ReciterEntity;
+import com.example.islamicapp.pojo.quran.RecitersResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,15 +24,12 @@ public class ReciterRepository {
     public ReciterRepository(Context context){
         this.context= context;
     }
-
     public LiveData<List<ReciterEntity>> getReciterFromApi(){
         fetchReciters();
         return reciters;
     }
-
     public void fetchReciters(){
         Call<RecitersResponse> call= ReciterClint.getInstance().getReciters();
-
         call.enqueue(new Callback<RecitersResponse>() {
             @Override
             public void onResponse(@NonNull Call<RecitersResponse> call, @NonNull Response<RecitersResponse> response) {
@@ -40,7 +37,6 @@ public class ReciterRepository {
                 reciters.setValue(response.body().getReciters());
                 new SaveDataTask().execute(response.body().getReciters());
             }
-
             @Override
             public void onFailure(@NonNull Call<RecitersResponse> call, @NonNull Throwable t) {
 
@@ -49,7 +45,7 @@ public class ReciterRepository {
 
     }
 
-    public static ReciterEntity getReciter(int reciterId) {
+    public static ReciterEntity getReciterByIdFromApi(int reciterId) {
         List<ReciterEntity> recitersList = reciters.getValue();
         if (recitersList != null) {
             for (ReciterEntity reciter : recitersList) {
@@ -65,10 +61,11 @@ public class ReciterRepository {
         return ReciterDatabase.getInstance(context).dao().getAllReciter();
     }
 
-
+    public ReciterEntity getReciterByIdFromDb(int reciterId){
+        return ReciterDatabase.getInstance(context).dao().getReciterById(reciterId);
+    }
 
     private class SaveDataTask extends AsyncTask<List<ReciterEntity>, Void, Void> {
-
         @Override
         protected Void doInBackground(List<ReciterEntity>... reciters) {
 
@@ -79,20 +76,7 @@ public class ReciterRepository {
                 ReciterDatabase.getInstance(context).dao().insertMoshafs(apiMoshaf);
                 ReciterDatabase.getInstance(context).dao().insertReciter(reciter);
             }
-
-//                List<MoshafEntity> roomMoshafList= new ArrayList<>();
-//                for (MoshafEntity moshaf: apiMoshaf){
-//                    MoshafEntity roomMoshaf= new MoshafEntity(moshaf.getId(), moshaf.getName(), moshaf.getServer(), moshaf.getSurah_total(), moshaf.getSurah_list());
-//                    roomMoshafList.add(roomMoshaf);
-////                    ReciterDatabase.getInstance(context).dao().insertMoshaf(roomMoshaf);
-//                }
-//                ReciterEntity roomReciter= new ReciterEntity(reciter.getId(), reciter.getName(), reciter.getLetter(), roomMoshafList);
-//                roomReciters.add(roomReciter);
-//            }
-//            ReciterDatabase.getInstance(context).dao().insertReciters(roomReciters);
-
             return null;
         }
     }
-
 }

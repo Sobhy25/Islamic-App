@@ -1,5 +1,7 @@
 package com.example.islamicapp.ui.quran.audio;
 
+import static com.example.islamicapp.ui.quran.audio.RecitersFragment.isNetworkAvailable;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,9 +17,9 @@ import android.widget.Spinner;
 
 import com.example.islamicapp.Database.QuranDatabase;
 import com.example.islamicapp.R;
-import com.example.islamicapp.pojo.AudioSura;
-import com.example.islamicapp.pojo.MoshafEntity;
-import com.example.islamicapp.pojo.ReciterEntity;
+import com.example.islamicapp.pojo.quran.AudioSura;
+import com.example.islamicapp.pojo.quran.MoshafEntity;
+import com.example.islamicapp.pojo.quran.ReciterEntity;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -81,48 +83,89 @@ public class ListOfSuras extends AppCompatActivity {
         else {
             adapter= new AudioSurasAdapter();
             suraRecyclerView.setAdapter(adapter);
-
             int reciterId = getIntent().getIntExtra("reciterId", -1);
-            ReciterEntity reciter = ReciterViewModel.getReciter(reciterId);
 
-            List<MoshafEntity> moshafList = reciter.getMoshaf();
-            String reciterName = reciter.getName();
-            ArrayAdapter<MoshafEntity> moshafadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, moshafList);
-            moshafadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            if(isNetworkAvailable(this)){
+                ReciterEntity reciter = ReciterViewModel.getReciterFromApi(reciterId);
+                List<MoshafEntity> moshafList = reciter.getMoshaf();
+                String reciterName = reciter.getName();
+                ArrayAdapter<MoshafEntity> moshafadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, moshafList);
+                moshafadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-            moshafSpinner.setAdapter(moshafadapter);
+                moshafSpinner.setAdapter(moshafadapter);
 
-            moshafSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    sura = new ArrayList<>();
-                    String moshafName = moshafList.get(position).getName();
-                    int totalOfSuras = moshafList.get(position).getSurah_total();
-                    String listOfSurasAsString = moshafList.get(position).getSurah_list();
-                    ArrayList<Integer> listOfSuras = convertStringToArrayList(listOfSurasAsString);
-                    String server = moshafList.get(position).getServer();
-                    DecimalFormat formatter = new DecimalFormat("000");
+                moshafSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        sura = new ArrayList<>();
+                        String moshafName = moshafList.get(position).getName();
+                        int totalOfSuras = moshafList.get(position).getSurah_total();
+                        String listOfSurasAsString = moshafList.get(position).getSurah_list();
+                        ArrayList<Integer> listOfSuras = convertStringToArrayList(listOfSurasAsString);
+                        String server = moshafList.get(position).getServer();
+                        DecimalFormat formatter = new DecimalFormat("000");
 
-                    for (int i = 0; i < totalOfSuras; i++) {
-                        int suraNumber = listOfSuras.get(i);
-                        String url = server + formatter.format(suraNumber) + ".mp3";
-                        String suraName = QuranDatabase.getINSTANCE(getApplicationContext()).quranDao().getSoraByNumber(suraNumber).getArabicName();
-                        sura.add(new AudioSura(suraNumber, url, suraName, reciterName, moshafName));
+                        for (int i = 0; i < totalOfSuras; i++) {
+                            int suraNumber = listOfSuras.get(i);
+                            String url = server + formatter.format(suraNumber) + ".mp3";
+                            String suraName = QuranDatabase.getINSTANCE(getApplicationContext()).quranDao().getSoraByNumber(suraNumber).getArabicName();
+                            sura.add(new AudioSura(suraNumber, url, suraName, reciterName, moshafName));
+                        }
+                        adapter.setList(sura);
                     }
-                    adapter.setList(sura);
 
-                }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+            } else {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ReciterEntity reciter= ReciterViewModel.getReciterFromDb(getBaseContext(), reciterId);
 
-                }
-            });
+                        List<MoshafEntity> moshafList = reciter.getMoshaf();
+                        String reciterName = reciter.getName();
+                        ArrayAdapter<MoshafEntity> moshafadapter = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, moshafList);
+                        moshafadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                        moshafSpinner.setAdapter(moshafadapter);
+
+                        moshafSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                sura = new ArrayList<>();
+                                String moshafName = moshafList.get(position).getName();
+                                int totalOfSuras = moshafList.get(position).getSurah_total();
+                                String listOfSurasAsString = moshafList.get(position).getSurah_list();
+                                ArrayList<Integer> listOfSuras = convertStringToArrayList(listOfSurasAsString);
+                                String server = moshafList.get(position).getServer();
+                                DecimalFormat formatter = new DecimalFormat("000");
+
+                                for (int i = 0; i < totalOfSuras; i++) {
+                                    int suraNumber = listOfSuras.get(i);
+                                    String url = server + formatter.format(suraNumber) + ".mp3";
+                                    String suraName = QuranDatabase.getINSTANCE(getApplicationContext()).quranDao().getSoraByNumber(suraNumber).getArabicName();
+                                    sura.add(new AudioSura(suraNumber, url, suraName, reciterName, moshafName));
+                                }
+                                adapter.setList(sura);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+
+                    }
+                }).start();
+
+
+            }
+
         }
     }
-
-
-
 
     public ArrayList<Integer> convertStringToArrayList(String text){
         String[] elements = text.split(","); // step two : convert String array to list of String
@@ -156,4 +199,5 @@ public class ListOfSuras extends AppCompatActivity {
         }
         return audioSuras;
     }
+
 }
