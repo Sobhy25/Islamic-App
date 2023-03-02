@@ -25,16 +25,13 @@ import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
 
 
 public class QuranContainer extends AppCompatActivity implements ColorPickerDialogListener{
-
     private static final int NUM_PAGES= 604;
     private boolean isViewPagerUpdated = false;
     int clickedPage;
     ActivityResultLauncher<Intent> arl;
     ViewPager2 viewPager;
     int openPageInViewPager;
-
     static Toolbar toolbar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +56,6 @@ public class QuranContainer extends AppCompatActivity implements ColorPickerDial
             isViewPagerUpdated= true;
         });
 
-//        QuranDatabase.getINSTANCE(this).quranDao().getAyatByPage(1);
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -68,7 +64,6 @@ public class QuranContainer extends AppCompatActivity implements ColorPickerDial
                 openPageInViewPager= viewPager.getCurrentItem();
             }
         });
-
     }
 
     @Override
@@ -127,12 +122,10 @@ public class QuranContainer extends AppCompatActivity implements ColorPickerDial
     public void onColorSelected(int dialogId, int color) {
         viewPager.setBackgroundColor(color);
     }
-
     @Override
     public void onDialogDismissed(int dialogId) {
 
     }
-
 
     private static class QuranPagesAdapter extends FragmentStateAdapter{
 

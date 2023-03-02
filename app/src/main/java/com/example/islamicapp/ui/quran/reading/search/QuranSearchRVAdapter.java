@@ -1,5 +1,6 @@
 package com.example.islamicapp.ui.quran.reading.search;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.islamicapp.ui.quran.reading.OnRecyclerViewItemClickListener;
 import com.example.islamicapp.R;
 import com.example.islamicapp.pojo.quran.Ayah;
+import com.example.islamicapp.ui.quran.tafseer.TafseerOfAyah;
 
 import java.util.ArrayList;
 
@@ -19,8 +21,11 @@ public class QuranSearchRVAdapter extends RecyclerView.Adapter<QuranSearchRVAdap
     ArrayList<Ayah> AyahArrayList = new ArrayList<>();
     OnRecyclerViewItemClickListener listener;
 
-    public QuranSearchRVAdapter(OnRecyclerViewItemClickListener listener) {
+    ButtonClick click;
+
+    public QuranSearchRVAdapter(OnRecyclerViewItemClickListener listener, ButtonClick click) {
         this.listener = listener;
+        this.click= click;
     }
 
     @NonNull
@@ -38,7 +43,9 @@ public class QuranSearchRVAdapter extends RecyclerView.Adapter<QuranSearchRVAdap
         holder.details.setText("الآية:"+Ayah.getAya_no()+"، صفحة:"+ Ayah.getPage());
         holder.text.setText(Ayah.getAya_text());
 
+
         holder.page= Ayah.getPage();
+        holder.ayahId= Ayah.getId();
     }
 
     @Override
@@ -53,14 +60,15 @@ public class QuranSearchRVAdapter extends RecyclerView.Adapter<QuranSearchRVAdap
 
     class quranSearchViewHolder extends RecyclerView.ViewHolder {
         TextView soraName, details, text;
-        Button moveButton;
-        int page;
+        Button moveButton, tafseerButton;
+        int page, ayahId;
         public quranSearchViewHolder(@NonNull View itemView) {
             super(itemView);
             soraName= itemView.findViewById(R.id.search_sora_name);
             details= itemView.findViewById(R.id.search_sora_detals);
             text= itemView.findViewById(R.id.search_ayah_text);
             moveButton= itemView.findViewById(R.id.search_btn_move);
+            tafseerButton= itemView.findViewById(R.id.search_btn_tafseer);
 
            moveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -68,6 +76,17 @@ public class QuranSearchRVAdapter extends RecyclerView.Adapter<QuranSearchRVAdap
                     listener.onItemClick(page);
                 }
             });
+
+           tafseerButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   click.tafseerBtnClick(ayahId);
+               }
+           });
         }
+    }
+
+    interface ButtonClick{
+        void tafseerBtnClick(int ayahId);
     }
 }

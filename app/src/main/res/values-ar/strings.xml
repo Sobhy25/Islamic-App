@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="islamic">Islamic</string>
+    <string name="app_name">تطبيق اسلاميات</string>
+    <string name="islamic">اسلامي</string>
     <string name="search_toolbar_title">بحث عن آية</string>
     <string name="search_edit_text_hint">اكتب كلمة أو جزء من آية</string>
     <string name="search_result_text">نتائج البحث</string>
@@ -19,6 +20,7 @@
     <string name="reciter">القرّاء</string>
     <string name="download">التحميلات</string>
     <string name="broadcast">الإذاعات</string>
+    <string name="search_btn_tafseer">تفسير</string>
 
     <string-array name="search_type">
         <item>تحتوي على</item>

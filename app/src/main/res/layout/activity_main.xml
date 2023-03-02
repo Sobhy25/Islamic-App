@@ -5,23 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".MainActivity">
 
-
-    <Button
-        android:id="@+id/main_read"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="قرآة القرآن"
-        android:textSize="@dimen/_20ssp"
-        android:layout_margin="@dimen/_18sdp"/>
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
 
-    <Button
-        android:id="@+id/main_listen"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="استماع للقرآن"
-        android:textSize="@dimen/_20ssp"
-        android:layout_margin="@dimen/_18sdp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+        <Button
+            android:id="@+id/main_read"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="قرآة القرآن"
+            android:textSize="@dimen/_20ssp"
+            android:layout_margin="@dimen/_18sdp"/>
+
+        <Button
+            android:id="@+id/main_listen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="استماع للقرآن"
+            android:textSize="@dimen/_20ssp"
+            android:layout_margin="@dimen/_18sdp"/>
+    </LinearLayout>
+
 </LinearLayout>

@@ -15,9 +15,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
         textView= findViewById(R.id.splash_tv);
-
         animation= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override

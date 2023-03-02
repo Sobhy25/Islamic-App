@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.islamicapp.R;
 import com.example.islamicapp.pojo.quran.Ayah;
+import com.example.islamicapp.ui.quran.tafseer.TafseerOfAyah;
 
 import java.util.ArrayList;
 
@@ -31,9 +32,16 @@ public class QuranSearch extends AppCompatActivity implements TextWatcher, Adapt
         searchResultTextView= findViewById(R.id.quran_research_results);
         resultRecyclerView= findViewById(R.id.quran_search_recycler_view);
         quranSearchRVAdapter= new QuranSearchRVAdapter(pageNumber -> {
-            Intent intent= new Intent().putExtra("pageNumber", pageNumber);
+            Intent intent = new Intent().putExtra("pageNumber", pageNumber);
             setResult(1, intent);
             finish();
+        }, new QuranSearchRVAdapter.ButtonClick() {
+            @Override
+            public void tafseerBtnClick(int ayahId) {
+                Intent intent= new Intent(getApplicationContext(), TafseerOfAyah.class);
+                intent.putExtra("Ayah_Id", ayahId);
+                startActivity(intent);
+            }
         });
         resultRecyclerView.setAdapter(quranSearchRVAdapter);
         searchSpinner.setOnItemSelectedListener(this);

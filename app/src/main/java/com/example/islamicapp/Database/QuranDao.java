@@ -41,6 +41,12 @@ public interface QuranDao {
     @Query("select sora as soraNumber, min(page) as startPage, max(page) as endPage,max(aya_no) as numbersOfAyat, sora_name_en as EnglishName, sora_name_ar as arabicName from quran where sora_name_ar= :soraName")
     List<Sora> getSoraByName(String soraName);
 
+    @Query("select aya_no from quran where id= :ayahId")
+    int getAyahNumberByItsId(int ayahId);
+    @Query("select sora from quran where id= :ayahId")
+    int getSoraNumberOfAyahByItsId(int ayahId);
 
+    @Query("select * from quran where id= :ayahId")
+    Ayah getAyahByItsId(int ayahId);
 
 }

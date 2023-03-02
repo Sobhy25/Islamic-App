@@ -38,28 +38,47 @@
                 android:layout_weight="1"/>
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/search_ayah_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/search_ayah_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/search_result_text_of_ayah"
-                android:textSize="@dimen/_18ssp"
-                android:padding="@dimen/_6sdp"/>
+            android:text="@string/search_result_text_of_ayah"
+            android:textSize="@dimen/_18ssp"
+            android:padding="@dimen/_6sdp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/search_btn_move"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
                 android:background="@drawable/search_btn_background"
                 android:text="@string/search_btn_move"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/_12ssp"
-                android:layout_margin="@dimen/_12sdp" />
+                android:layout_weight="1"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/search_btn_tafseer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/search_btn_background"
+                android:text="@string/search_btn_tafseer"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_12ssp"
+                android:layout_weight="1"/>
+
+
         </LinearLayout>
+
+
+
+
+
 
     </LinearLayout>
 
