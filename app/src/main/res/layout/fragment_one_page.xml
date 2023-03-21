@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_one_page"
-    tools:context=".ui.quran.reading.OnePageFragment">
+    tools:context="com.sobhy.quran.ui.reading.OnePageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:id="@+id/page_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_6sdp"
+            android:layout_margin="@dimen/_2sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -24,19 +24,19 @@
                 android:id="@+id/fragment_surah_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_4sdp"
-                android:gravity="right"
+                android:padding="@dimen/_2sdp"
+                android:gravity="center"
                 android:layout_weight="1"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_10ssp" />
 
             <TextView
                 android:id="@+id/fragment_juzz_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_4sdp"
-                android:gravity="left"
+                android:padding="@dimen/_2sdp"
+                android:gravity="center"
                 android:layout_weight="1"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_10ssp" />
 
         </LinearLayout>
 
@@ -45,7 +45,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scaleType="fitXY"
-            android:src="@drawable/page003"
             app:layout_constraintBottom_toTopOf="@id/fragment_page_number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,8 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="@dimen/_4sdp"
-            android:textSize="@dimen/_12ssp"
+            android:padding="@dimen/_2sdp"
+            android:textSize="@dimen/_10ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -1,25 +1,21 @@
 <resources>
-    <string name="app_name">Islamic App</string>
+    <string name="app_name">Guidance&amp;healing</string>
     <string name="islamic">Islamic</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="search_toolbar_title">search for ayah</string>
     <string name="search_edit_text_hint">write a word</string>
-    <string name="search_result_text">nataig albahth</string>
-    <string name="search_result_name_of_sora">sorat al baqarah</string>
-    <string name="search_result_indexofayah_page">ayat 1 saf7a 1</string>
+    <string name="search_result_text">research results: </string>
+
     <string name="search_result_text_of_ayah">the text of ayah in this text view</string>
     <string name="search_btn_move">move</string>
     <string name="index">Index</string>
     <string name="soras">soras</string>
     <string name="jozz">jozz</string>
     <string name="search_for_ayah">search for ayah</string>
-    <string name="move_to">move to</string>
     <string name="change_background_color">change background color</string>
-    <string name="search_type_startwith">Enter character or word</string>
-    <string name="search_type_endwith">Enter character or word</string>
+
     <string name="reciter">reciter</string>
     <string name="download">download</string>
-    <string name="broadcast">broadcast</string>
     <string name="search_btn_tafseer">tafseer</string>
 
     <string-array name="search_type">
@@ -27,5 +23,11 @@
         <item>start with</item>
         <item>end with</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="main_activity">Main Activity</string>
+    <string name="no_download_found">No download found</string>
+    <string name="developer_message">Developed by: Sobhy Abdel Hakam</string>
+    <string name="reading">reading</string>
+    <string name="listening">Listening</string>
 
 </resources>

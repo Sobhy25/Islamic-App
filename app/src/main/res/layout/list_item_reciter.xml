@@ -14,8 +14,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/_8sdp"
             android:background="@color/colorPrimary"
-            android:text="محمد صديق المنشاوي"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/_20ssp"
             android:textStyle="bold" />
 

@@ -6,7 +6,7 @@
     android:id="@+id/container_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.quran.reading.QuranContainer">
+    tools:context="com.sobhy.quran.ui.reading.QuranContainer">
 
 
 
@@ -14,8 +14,7 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layoutDirection="rtl"
-        android:background="#32FFC107"/>
+        android:layoutDirection="rtl" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/material_toolbar"

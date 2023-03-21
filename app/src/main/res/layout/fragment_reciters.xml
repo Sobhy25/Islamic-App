@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layoutDirection="rtl"
-    tools:context=".ui.quran.audio.RecitersFragment">
+    tools:context="com.sobhy.quran.ui.audio.RecitersFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -16,44 +16,41 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:expandedTitleMarginStart="@dimen/_10sdp"
+            app:collapsedTitleTextColor="@color/white"
+            app:expandedTitleTextColor="@color/white"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/reciters_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                app:title="@string/reciter"/>
+                app:title="@string/reciter" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:gravity="center"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
-
-            <ListView
-                android:id="@+id/letter_list"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fragment_list_reciters_recyclerview_letter"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 tools:listitem="@layout/list_item_letter"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -61,6 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:listitem="@layout/list_item_reciter"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
         </LinearLayout>
 

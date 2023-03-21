@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.islamicapp'
+    namespace 'com.sobhy.quran'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.islamicapp"
+        applicationId "com.sobhy.quran"
         minSdk 24
         targetSdk 33
         versionCode 1

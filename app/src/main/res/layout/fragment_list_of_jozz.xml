@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.quran.reading.indexes.listofjozz.ListOfJozz">
+    tools:context="com.sobhy.quran.ui.reading.indexes.listofjozz.ListOfJozz">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/jozz_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/list_item_sora" />
+        tools:listitem="@layout/list_item_jozz" />
 
 </FrameLayout>

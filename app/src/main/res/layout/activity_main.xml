@@ -1,38 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:background="#80000000"
+    tools:context="com.sobhy.quran.MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/main_tool_bar"
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
+        android:layout_height="match_parent"
+        android:background="@drawable/main_activity_background"
+        android:alpha="0.25"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-        <Button
-            android:id="@+id/main_read"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="قرآة القرآن"
-            android:textSize="@dimen/_20ssp"
-            android:layout_margin="@dimen/_18sdp"/>
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/main_listen"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="استماع للقرآن"
-            android:textSize="@dimen/_20ssp"
-            android:layout_margin="@dimen/_18sdp"/>
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/main_read"
+                android:layout_width="@dimen/_140sdp"
+                android:layout_height="@dimen/_140sdp"
+                app:cardElevation="@dimen/_8sdp"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardBackgroundColor="#BE2196F3"
+                app:cardUseCompatPadding="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:src="@drawable/quran"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/reading"
+                        android:textSize="@dimen/_16ssp"
+                        android:layout_margin="@dimen/_8sdp"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/main_listen"
+                android:layout_width="@dimen/_140sdp"
+                android:layout_height="@dimen/_140sdp"
+                app:cardElevation="@dimen/_8sdp"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardBackgroundColor="#BE2196F3"
+                app:cardUseCompatPadding="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:src="@drawable/quran_audio"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/listening"
+                        android:textSize="@dimen/_16ssp"
+                        android:layout_margin="@dimen/_8sdp"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>
+

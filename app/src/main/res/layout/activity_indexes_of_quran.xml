@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.quran.reading.indexes.IndexesOfQuran"
+    tools:context="com.sobhy.quran.ui.reading.indexes.IndexesOfQuran"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -18,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:title="@string/index" />
+            app:title="@string/index"
+            app:titleTextColor="@color/white"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
